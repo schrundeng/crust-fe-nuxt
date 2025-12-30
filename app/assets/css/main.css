@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme{
+  /* Brand pallete */
+  --color-brown: #522C15;
+  --color-yellow: #FFC973;
+  --color-white: #FBF7EE;
+  --color-green: #BDC416;
+}
+
+@layer utilities {
+  .text-display {
+    font-size: 2rem; /* 32px */
+    line-height: 1.2;
+  }
+  .text-heading {
+    font-size: 1rem; /* 16px */
+    line-height: 1.5;
+  }
+  .text-body {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.5;
+  }
+  .text-info {
+    font-size: 0.75rem; /* 12px */
+    line-height: 1.5;
+  }
+}
+
+@layer base {
+  body {
+    font-family: "Livvic", sans-serif;
+  }
+}
+
+
+
+/* Display */
+@font-face {
+  font-family: "Livvic";
+  src: url(@/assets/fonts/Livvic-Bold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Heading */
+@font-face {
+  font-family: "Livvic";
+  src: url(@/assets/fonts/Livvic-SemiBold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Body */
+@font-face {
+  font-family: "Livvic";
+  src: url(@/assets/fonts/Livvic-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Info */
+@font-face {
+  font-family: "Livvic";
+  src: url(@/assets/fonts/Livvic-ExtraLight.ttf) format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
