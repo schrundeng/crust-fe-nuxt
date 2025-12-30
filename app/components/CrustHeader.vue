@@ -9,7 +9,7 @@
         <!-- Hamburger button mobile -->
         <div class="md:hidden">
           <button
-            class="p-2 hover:bg-white/10 rounded transition-colors"
+            class="p-2 hover:bg-white/10 rounded transition-colors active:scale-95 active:bg-black/20"
             @click="toggleMenu"
             aria-label="Toggle menu"
           >
@@ -27,7 +27,7 @@
             v-for="(item, index) in items"
             :key="index"
             :href="item.path"
-            class="hover:bg-white/10 rounded transition-colors px-3 py-2 flex items-center gap-2"
+            class="hover:bg-white/10 rounded transition-colors px-3 py-2 flex items-center gap-2 active:scale-95 active:bg-black/20"
           >
             {{ item.title }}
           </a>

@@ -21,7 +21,7 @@
           <h2 class="text-heading font-semibold pl-2">Menu</h2>
           <button
             @click="$emit('close')"
-            class="p-2 hover:bg-white/10 rounded transition-colors"
+            class="p-2 hover:bg-white/10 rounded transition-colors active:scale-95 active:bg-black/20"
             aria-label="Close menu"
           >
             <img src="/icons/menu-close.svg" alt="Close menu" class="w-6 h-6" />
@@ -35,7 +35,7 @@
               v-for="(item, index) in items"
               :key="index"
               :href="item.path"
-              class="py-3 pl-2 hover:bg-white/10 rounded transition-colors flex items-center gap-3"
+              class="py-3 pl-2 hover:bg-white/10 rounded transition-colors flex items-center gap-3 active:scale-95 active:bg-black/20"
             >
               <img
                 v-if="item.icon"
