@@ -9,7 +9,7 @@
         <!-- Hamburger button mobile -->
         <div class="md:hidden">
           <button
-            class="p-2 hover:bg-white/10 rounded transition-colors active:scale-95 active:bg-black/20"
+            class="p-2 "
             @click="toggleMenu"
             aria-label="Toggle menu"
           >

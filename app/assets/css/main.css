@@ -6,7 +6,8 @@
   --color-brown: #522C15;
   --color-yellow: #FFC973;
   --color-white: #FBF7EE;
-  --color-green: #BDC416;
+  --color-green: #DEE26E;
+  --color-yellow-gradient: #FFFF61;
 }
 
 @layer utilities {

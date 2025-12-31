@@ -3,7 +3,7 @@
   <Transition name="fade">
     <div
       v-if="isOpen"
-      class="fixed inset-0 bg-black opacity-50 z-40 md:hidden"
+      class="fixed inset-0 bg-black opacity-50 z-100 md:hidden"
       @click="$emit('close')"
     ></div>
   </Transition>
@@ -12,7 +12,7 @@
   <Transition name="slide">
     <aside
       v-if="isOpen"
-      class="fixed top-0 right-0 h-full w-64 bg-brown text-white shadow-lg z-50 md:hidden"
+      class="fixed top-0 right-0 h-full w-64 bg-brown text-white shadow-lg z-110 md:hidden"
     >
       <div class="flex flex-col h-full">
         <div
