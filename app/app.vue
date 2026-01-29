@@ -3,8 +3,10 @@
     <!-- Header and Sidebar -->
     <CrustHeader @toggle-menu="isSidebarOpen = !isSidebarOpen" />
     <Sidebar :isOpen="isSidebarOpen" @close="isSidebarOpen = false" />
-    
-    <NuxtPage />
+
+    <div class="pt-15">
+      <NuxtPage />
+    </div>
   </div>
 </template>
 

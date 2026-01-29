@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="bg-brown text-white px-4 py-3">
+    <header class="fixed top-0 left-0 right-0 z-100 bg-brown text-white px-4 py-3">
       <div class="flex flex-row items-center justify-between">
         <a href="/"><div>
           <h1 class="text-heading font-semibold pl-2">Crusts & Daisies</h1>
