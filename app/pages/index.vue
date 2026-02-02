@@ -47,7 +47,7 @@
           </button>
         </div>
 
-        <div class="bg-yellow overflow-clip pt-2">
+        <div class="bg-yellow overflow-auto sm:overflow-clip md:overflow-visible pt-2">
           <Polaroids />
 
           <div class="pt-100 mx-6">
