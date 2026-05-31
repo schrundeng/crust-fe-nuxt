@@ -43,7 +43,7 @@
               Pesan Sekarang!
             </a>
 
-            <img src="/icons/out.svg" alt="Order Now!" />
+            <!-- <img src="/icons/out.svg" alt="Pesan Sekarang!" /> -->
           </button>
         </div>
 
