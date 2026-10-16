@@ -61,8 +61,8 @@
 const items = ref([
   { title: "Home", path: "/", icon: "home" },
   { title: "Order", path: "/order", icon: "order" },
-  { title: "About", path: "/about", icon: "map" },
-  { title: "Contact", path: "/contact", icon: "phone" },
+  { title: "About", path: "/#about", icon: "map" },
+  { title: "Contact", path: "/#contact", icon: "phone" },
 ]);
 
 defineProps({
