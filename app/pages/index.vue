@@ -1,43 +1,44 @@
 <template>
-  <div class="bg-yellow relative">
-    <div
-      class="mt-56 backdrop-blur-sm w-full h-30 z-50 absolute left-0 right-0"
-      style="mask-image: linear-gradient(to top, white 60%, transparent)"
-    />
-    <div
-      class="mt-56 bg-linear-to-t from-yellow/20 from-10% to-100% h-20 z-40 absolute left-0 right-0"
-    />
-    <div
-      class="bg-linear-to-t from-40% to-yellow-gradient/40 w-full h-40 z-20 absolute left-0 right-0"
-    />
-
-    <!-- Hero text content -->
-    <div class="relative max-w-screen-sm mx-auto">
-      <div class="mt-60 mx-6 absolute z-60">
-        <h1 class="text-display font-bold text-brown">Crust & Daisies</h1>
-        <p class="text-heading font-semibold text-brown mt-2 max-w-md">
-          krʌsts ænd ˈdeɪziz
-        </p>
-
-        <p class="text-body font-regular text-brown mt-2 max-w-md">
-          Crust & Daisies adalah perpaduan antara kue kering yang renyah dan
-          menyenangkan dengan rasa dan suasana yang hangat.
-        </p>
+  <div class="bg-yellow min-h-screen overflow-clip">
+    <!-- hero section -->
+    <div class="relative max-w-screen-sm md:max-w-screen-md mx-auto pt-16 px-6">
+      <!-- logo container -->
+      <div
+        class="relative w-72 md:w-90 md:translate-x-48 sm:translate-x-48 translate-x-12 mx-auto"
+      >
+        <img
+          src="/assets/img/logo.png"
+          alt="Crusts & Daisies Logo"
+          class="w-full h-auto select-none"
+        />
+        <!-- gradient thingy -->
+        <div
+          class="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-yellow via-yellow/70 to-transparent backdrop-blur-[2px]"
+          style="mask-image: linear-gradient(to top, black 50%, transparent)"
+        ></div>
       </div>
 
-      <img
-        src="/assets/img/logo.png"
-        alt="Crust and Daisies Logo"
-        class="w-96 mx-auto pt-6 pl-16 pr-2 pb-20 z-10"
-      />
-    </div>
+      <!-- call to action -->
+      <div
+        class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 -mt-32 md:-mt-36 relative z-10"
+      >
+        <!-- title and desc -->
+        <div class="max-w-md">
+          <h1 class="text-display font-bold text-brown">Crusts & Daisies</h1>
+          <p class="text-heading font-semibold text-brown mt-1">
+            krʌsts ænd ˈdeɪziz
+          </p>
 
-    <!-- Full-width yellow background section -->
-    <div class="bg-yellow w-full absolute left-0 right-0">
-      <div class="max-w-screen-sm mx-auto">
-        <div class="flex justify-end px-6">
+          <p class="text-body font-regular text-brown mt-2">
+            Crust & Daisies adalah perpaduan antara kue kering yang renyah dan
+            menyenangkan dengan rasa dan suasana yang hangat.
+          </p>
+        </div>
+
+        <!-- order button -->
+        <div class="flex md:justify-end">
           <button
-            class="flex flex-row bg-green px-4 py-3 rounded-lg drop-shadow-lg/25 hover:bg-green/80 transition-colors active:scale-95 active:bg-black/20"
+            class="flex flex-row bg-green hover:bg-[#cdd15e] active:scale-[0.99] transition-all rounded-[10px] py-3 px-8 font-semibold text-black text-[16px] border-[1.5px] border-[#2A2A2A] shadow-[0px_2px_0px_0px_#2A2A2A] cursor-pointer"
           >
             <a href="/order" class="px-2 text-brown text-heading font-semibold">
               Pesan Sekarang!
@@ -46,40 +47,45 @@
             <!-- <img src="/icons/out.svg" alt="Pesan Sekarang!" /> -->
           </button>
         </div>
-
-        <div class="bg-yellow overflow-hidden md:overflow-visible pt-2">
-          <Polaroids />
-
-          <div class="pt-100 mx-6">
-            <h1 class="text-display font-bold text-brown">About Us</h1>
-
-            <p class="text-body font-regular text-brown mt-2 max-w-md">
-              Crust & Daisies berdiri atas kolaborasi antara Fayza dan Nadia
-              untuk mencari produktifitas selama liburan akhir semester.
-              <br />
-              <br />
-
-              Crust & Daisies menghadirkan berbagai kue seperti pie apel,
-              pastry, dessert box, dan lain lain.
-              <span class="font-bold"
-                >Toko kami menerima pembelian pre-order
-              </span>
-              dan <span class="font-bold">open order.</span>
-
-              <br />
-              <br />
-
-              Dibawah ini merupakan beberapa delicacies yang kami tawarkan...
-              Happy Browsing :D
-            </p>
-          </div>
-        </div>
       </div>
+    </div>
 
-      <!-- Carousel Section -->
-      <div class="my-10">
-        <Carousel />
-      </div>
+    <!-- polaroids -->
+    <div
+      class="md:mt-28 mt-16 h-[350px] md:h-[450px] md:max-w-4xl max-w-xl mx-auto px-6"
+    >
+      <Polaroids />
+    </div>
+
+    <!-- about us -->
+    <div
+      id="about"
+      class="pt-8 max-w-screen-sm md:max-w-screen-md mx-auto px-6"
+    >
+      <h1 class="text-display font-bold text-brown">About Us</h1>
+
+      <p class="text-body font-regular text-brown mt-2">
+        Crust & Daisies berdiri atas kolaborasi antara Fayza dan Nadia untuk
+        mencari produktifitas selama liburan akhir semester.
+        <br />
+        <br />
+
+        Crust & Daisies menghadirkan berbagai kue seperti pie apel, pastry,
+        dessert box, dan lain lain.
+        <span class="font-bold">Toko kami menerima pembelian pre-order </span>
+        dan <span class="font-bold">open order.</span>
+
+        <br />
+        <br />
+
+        Dibawah ini merupakan beberapa delicacies yang kami tawarkan... Happy
+        Browsing :D
+      </p>
+    </div>
+
+    <!-- carousel -->
+    <div class="w-full">
+      <Carousel />
     </div>
   </div>
 </template>
