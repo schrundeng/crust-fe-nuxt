@@ -12,17 +12,17 @@
   width: 100%;
   position: relative;
   overflow: clip;
-  height: 372px;
+  height: 480px;
 }
 
 .taplak {
   position: absolute;
-  margin-top: 32px;
-  width: 120%;
-  left: -10%;
+  top: 50%;
+  left: 50%;
+  width: 130vw;
   height: 308px;
   background-color: #f5f5d5;
-  transform: rotate(-4deg);
+  transform: translate(-50%, -50%) rotate(-4deg);
   transform-origin: center;
 }
 
@@ -50,5 +50,15 @@
     rgba(176, 181, 34, 0.5) 28px,
     rgba(176, 181, 34, 0.5) 56px
   );
+}
+
+@media (min-width: 768px) {
+  .taplak-container {
+    height: 560px;
+  }
+
+  .taplak {
+    height: 364px;
+  }
 }
 </style>
