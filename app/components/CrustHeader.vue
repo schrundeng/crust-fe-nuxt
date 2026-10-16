@@ -40,10 +40,10 @@
 <script setup>
 
   const items = ref([
-  { title: "Order", path: "/order"},
-  { title: "About", path: "/about"},
-  { title: "Contact", path: "/contact"},
-]);
+    { title: "Order", path: "/order" },
+    { title: "About", path: "/#about" },
+    { title: "Contact", path: "/#contact" },
+  ]);
 const emit = defineEmits(["toggle-menu"]);
 
 const toggleMenu = () => {
