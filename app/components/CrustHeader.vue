@@ -1,23 +1,19 @@
 <template>
   <div>
-    <header class="fixed top-0 left-0 right-0 z-100 bg-brown text-white px-4 py-3">
+    <header
+      class="fixed top-0 left-0 right-0 z-100 bg-brown text-white px-4 py-3"
+    >
       <div class="flex flex-row items-center justify-between">
-        <a href="/"><div>
-          <h1 class="text-heading font-semibold pl-2">Crusts & Daisies</h1>
-        </div></a>
+        <a href="/"
+          ><div>
+            <h1 class="text-heading font-semibold pl-2">Crusts & Daisies</h1>
+          </div></a
+        >
 
         <!-- Hamburger button mobile -->
         <div class="md:hidden">
-          <button
-            class="p-2 "
-            @click="toggleMenu"
-            aria-label="Toggle menu"
-          >
-            <img
-              src="/icons/menu-hamburger.svg"
-              alt="Menu"
-              class="w-6 h-6"
-            />
+          <button class="p-2" @click="toggleMenu" aria-label="Toggle menu">
+            <img src="/icons/menu-hamburger.svg" alt="Menu" class="w-6 h-6" />
           </button>
         </div>
 
@@ -38,12 +34,11 @@
 </template>
 
 <script setup>
-
-  const items = ref([
-    { title: "Order", path: "/order" },
-    { title: "About", path: "/#about" },
-    { title: "Contact", path: "/#contact" },
-  ]);
+const items = ref([
+  { title: "Order", path: "/menu" },
+  { title: "About", path: "/#about" },
+  { title: "Contact", path: "/#contact" },
+]);
 const emit = defineEmits(["toggle-menu"]);
 
 const toggleMenu = () => {

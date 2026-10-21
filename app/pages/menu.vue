@@ -9,7 +9,7 @@
         <h1
           class="text-[32px] font-bold text-brown leading-none font['Livvic'] tracking-tight"
         >
-          Keranjangmu
+          Menu
         </h1>
       </div>
 
@@ -38,33 +38,77 @@
       v-if="cartItems.length > 0"
       class="fixed bottom-0 left-0 w-full bg-brown h-22 flex z-10"
     >
-      <div class="max-w-3xl w-full mx-auto flex items-center justify-between px-6">
+      <div
+        class="max-w-3xl w-full mx-auto flex items-center justify-between px-6"
+      >
         <div class="text-[16px] font-semibold text-white">
           Total: Rp{{ total.toLocaleString("id-ID") }}
         </div>
         <button
-          class="bg-green hover:bg-[#cdd15e] transition-colors rounded-[10px] px-8 py-2.5 font-semibold text-black shadow-[-5px_3px_4px_0px_rgba(0,0,0,0.25)] text-[16px]"
+          @click="openModal"
+          :disabled="total === 0"
+          :class="[
+            'flex flex-row bg-green hover:bg-[#cdd15e] active:scale-[0.99] transition-all rounded-[10px] py-2 px-12 font-semibold text-brown text-[16px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#271205]',
+            total === 0 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+          ]"
         >
           Pesan!
         </button>
       </div>
     </div>
+
+    <!-- checkout summary modal -->
+    <CheckoutModal
+      :is-open="isModalOpen"
+      :items="selectedItems"
+      :total="total"
+      @close="isModalOpen = false"
+      @checkout="proceedToCheckout"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
 
+const isModalOpen = ref(false);
+
 const cartItems = ref([
-  { id: 1, name: "Apple Pie", price: 7000, quantity: 23, image: null },
-  { id: 2, name: "Apple Pie", price: 7000, quantity: 2, image: null },
-  { id: 3, name: "Apple Pie", price: 7000, quantity: 1, image: null },
-  { id: 4, name: "Apple Pie", price: 7000, quantity: 1, image: null },
-  { id: 5, name: "Apple Pie", price: 7000, quantity: 1, image: null },
-  { id: 6, name: "Apple Pie", price: 7000, quantity: 1, image: null },
-  { id: 7, name: "Apple Pie", price: 7000, quantity: 1, image: null },
-  { id: 8, name: "Apple Pie", price: 7000, quantity: 1, image: null },
-  { id: 9, name: "Apple Pie", price: 7000, quantity: 1, image: null },
+  {
+    id: 1,
+    name: "Apple Pie",
+    price: 7000,
+    quantity: 0,
+    image: "/img/illust/apple_pie.png",
+  },
+  {
+    id: 2,
+    name: "Caramel Pudding",
+    price: 7000,
+    quantity: 0,
+    image: "/img/illust/caramel_pudding.png",
+  },
+  {
+    id: 3,
+    name: "Eclair Pastry",
+    price: 8000,
+    quantity: 0,
+    image: "/img/illust/eclair_pastry.png",
+  },
+  {
+    id: 4,
+    name: "Choquettes",
+    price: 6000,
+    quantity: 0,
+    image: "/img/illust/choquettes.png",
+  },
+  {
+    id: 5,
+    name: "Teh Tarik",
+    price: 5000,
+    quantity: 0,
+    image: "/img/illust/teh_tarik.png",
+  },
 ]);
 
 const increaseQuantity = (id) => {
@@ -77,14 +121,27 @@ const decreaseQuantity = (id) => {
   if (item && item.quantity > 0) item.quantity--;
 };
 
-const removeItem = (id) => {
-  cartItems.value = cartItems.value.filter((i) => i.id !== id);
-};
-
 const total = computed(() => {
   return cartItems.value.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
 });
+
+const selectedItems = computed(() => {
+  return cartItems.value.filter((i) => i.quantity > 0);
+});
+
+const openModal = () => {
+  if (total.value > 0) {
+    isModalOpen.value = true;
+  }
+};
+
+const proceedToCheckout = () => {
+  if (import.meta.client) {
+    localStorage.setItem("cnd_cart", JSON.stringify(selectedItems.value));
+  }
+  navigateTo("/checkout");
+};
 </script>
