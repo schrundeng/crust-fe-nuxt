@@ -1,7 +1,7 @@
 <template>
   <footer id="contact" class="bg-brown text-white w-full">
     <div
-      class="max-w-screen-md mx-auto py-10 md:py-14 flex flex-col md:flex-row md:items-start md:justify-between gap-8"
+      class="max-w-screen-md mx-auto py-10 md:py-14 flex md:px-0 px-6 flex-col md:flex-row md:items-start md:justify-between gap-8"
     >
       <!-- contact info -->
       <div class="space-y-4">
