@@ -10,7 +10,7 @@
       <!-- prev button -->
       <button
         @click="scrollPrev"
-        class="shrink-0 w-9 h-9 md:w-12 md:h-12 rounded-full bg-[#FFFAE8] hover:bg-[#f4edd9] active:scale-95 transition-all border-[2px] md:border-[2.5px] border-[#7D4E2D] shadow-[0px_2px_0px_0px_#7D4E2D] md:shadow-[0px_3px_0px_0px_#7D4E2D] flex items-center justify-center text-[#7D4E2D] cursor-pointer mr-1.5 md:mr-4 z-20"
+        class="shrink-0 w-9 h-9 md:w-12 md:h-12 rounded-full bg-[#FFFAE8] hover:bg-[#f4edd9] btn-press border-[2px] md:border-[2.5px] border-[#7D4E2D] shadow-[0px_2px_0px_0px_#7D4E2D] md:shadow-[0px_3px_0px_0px_#7D4E2D] flex items-center justify-center text-[#7D4E2D] cursor-pointer mr-1.5 md:mr-4 z-20"
       >
         <ChevronLeft class="w-4 h-4 md:w-6 md:h-6 stroke-[3]" />
       </button>
@@ -80,7 +80,7 @@
       <!-- next button -->
       <button
         @click="scrollNext"
-        class="shrink-0 w-9 h-9 md:w-12 md:h-12 rounded-full bg-[#FFFAE8] hover:bg-[#f4edd9] active:scale-95 transition-all border-[2px] md:border-[2.5px] border-[#7D4E2D] shadow-[0px_2px_0px_0px_#7D4E2D] md:shadow-[0px_3px_0px_0px_#7D4E2D] flex items-center justify-center text-[#7D4E2D] cursor-pointer ml-1.5 md:ml-4 z-20"
+        class="shrink-0 w-9 h-9 md:w-12 md:h-12 rounded-full bg-[#FFFAE8] hover:bg-[#f4edd9] btn-press border-[2px] md:border-[2.5px] border-[#7D4E2D] shadow-[0px_2px_0px_0px_#7D4E2D] md:shadow-[0px_3px_0px_0px_#7D4E2D] flex items-center justify-center text-[#7D4E2D] cursor-pointer ml-1.5 md:ml-4 z-20"
       >
         <ChevronRight class="w-4 h-4 md:w-6 md:h-6 stroke-[3]" />
       </button>
