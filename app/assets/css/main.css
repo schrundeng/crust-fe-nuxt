@@ -8,6 +8,16 @@
   --color-white: #FBF7EE;
   --color-green: #DEE26E;
   --color-yellow-gradient: #FFFF61;
+  --color-blue: #12257A;
+
+  /* Receipt fonts */
+  --font-receipt: "Merchant Copy", monospace;
+  --font-receipt-wide: "Merchant Copy Wide", monospace;
+  --font-receipt-double: "Merchant Copy Doublesize", monospace;
+
+  /* Handwriting / Nota fonts */
+  --font-handwriting: "Gloria Hallelujah", cursive;
+  --font-nota: "Gloria Hallelujah", cursive;
 }
 
 @layer utilities {
@@ -26,6 +36,28 @@
   .text-info {
     font-size: 0.75rem; /* 12px */
     line-height: 1.5;
+  }
+  .font-receipt {
+    font-family: "Merchant Copy", monospace;
+  }
+  .font-receipt-wide {
+    font-family: "Merchant Copy Wide", monospace;
+  }
+  .font-receipt-double {
+    font-family: "Merchant Copy Doublesize", monospace;
+  }
+  .font-handwriting {
+    font-family: "Gloria Hallelujah", cursive;
+  }
+  .font-nota {
+    font-family: "Gloria Hallelujah", cursive;
+  }
+  .btn-press {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .btn-press:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: none !important;
   }
 }
 
@@ -72,3 +104,38 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Receipt Fonts */
+@font-face {
+  font-family: "Merchant Copy";
+  src: url("@/assets/fonts/Merchant Copy.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Merchant Copy Wide";
+  src: url("@/assets/fonts/Merchant Copy Wide.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Merchant Copy Doublesize";
+  src: url("@/assets/fonts/Merchant Copy Doublesize.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Handwriting / Nota font */
+@font-face {
+  font-family: "Gloria Hallelujah";
+  src: url("@/assets/fonts/GloriaHallelujah-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
