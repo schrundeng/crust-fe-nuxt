@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-yellow min-h-screen">
     <!-- Header and Sidebar -->
     <CrustHeader @toggle-menu="isSidebarOpen = !isSidebarOpen" />
     <Sidebar :isOpen="isSidebarOpen" @close="isSidebarOpen = false" />

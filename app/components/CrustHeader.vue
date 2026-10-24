@@ -4,11 +4,9 @@
       class="fixed top-0 left-0 right-0 z-100 bg-brown text-white px-4 py-3"
     >
       <div class="flex flex-row items-center justify-between">
-        <a href="/"
-          ><div>
-            <h1 class="text-heading font-semibold pl-2">Crusts & Daisies</h1>
-          </div></a
-        >
+        <NuxtLink to="/">
+          <h1 class="text-heading font-semibold pl-2">Crusts & Daisies</h1>
+        </NuxtLink>
 
         <!-- Hamburger button mobile -->
         <div class="md:hidden">
@@ -19,14 +17,14 @@
 
         <!-- Navigation links desktop -->
         <nav class="hidden md:flex">
-          <a
+          <NuxtLink
             v-for="(item, index) in items"
             :key="index"
-            :href="item.path"
+            :to="item.path"
             class="hover:bg-white/10 rounded transition-colors px-3 py-2 flex items-center gap-2 active:scale-95 active:bg-black/20"
           >
             {{ item.title }}
-          </a>
+          </NuxtLink>
         </nav>
       </div>
     </header>

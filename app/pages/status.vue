@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-yellow relative min-h-screen pb-24 flex flex-col items-center">
+  <div class="bg-yellow min-h-screen">
+    <div class="bg-yellow relative min-h-screen pb-24 flex flex-col items-center">
     <div class="w-full max-w-3xl">
       <!-- title -->
       <div class="py-8 pb-4 mx-6">
@@ -303,7 +304,8 @@
     </div>
   </div>
 
-  <Footer />
+    <Footer />
+  </div>
 </template>
 
 <script setup>
@@ -313,7 +315,6 @@ import {
   X,
   Clock,
   CheckCircle,
-  FileText,
   Copy,
   Check,
 } from "lucide-vue-next";

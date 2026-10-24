@@ -30,11 +30,12 @@
 
         <!-- Index links -->
         <div class="p-4 grow">
-          <div grid gap-4>
-            <a
+          <div class="grid gap-1">
+            <NuxtLink
               v-for="(item, index) in items"
               :key="index"
-              :href="item.path"
+              :to="item.path"
+              @click="$emit('close')"
               class="py-3 pl-2 hover:bg-white/10 rounded transition-colors flex items-center gap-3 active:scale-95 active:bg-black/20"
             >
               <img
@@ -44,7 +45,7 @@
                 class="w-5 h-5"
               />
               <span class="pl-2">{{ item.title }}</span>
-            </a>
+            </NuxtLink>
           </div>
         </div>
 

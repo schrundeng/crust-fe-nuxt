@@ -1,5 +1,5 @@
 <template>
-  <footer id="contact" class="bg-brown text-white w-full">
+  <footer id="contact" class="bg-brown text-white w-full scroll-mt-20">
     <div
       class="max-w-screen-md mx-auto py-10 md:py-14 flex md:px-0 px-6 flex-col md:flex-row md:items-start md:justify-between gap-8"
     >

@@ -7,7 +7,7 @@
       >
         <img
           class="w-full aspect-square object-cover"
-          src="/assets/img/apple_pie.jpg"
+          src="~/assets/img/apple_pie.jpg"
           alt="Apple Pie"
         />
         <p class="text-sm text-brown mt-3">Apple Pie</p>
@@ -19,7 +19,7 @@
       >
         <img
           class="w-full aspect-square object-cover"
-          src="/assets/img/eclair_pastry.jpg"
+          src="~/assets/img/eclair_pastry.jpg"
           alt="Eclair Pastry"
         />
         <p class="text-sm text-brown mt-3">Eclair Pastry</p>
@@ -32,7 +32,7 @@
       >
         <img
           class="w-full aspect-square object-cover"
-          src="/assets/img/caramel_pudding.jpg"
+          src="~/assets/img/caramel_pudding.jpg"
           alt="Caramel Pudding"
         />
         <p class="text-sm text-brown mt-3">Caramel Pudding</p>

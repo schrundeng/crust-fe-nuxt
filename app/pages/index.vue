@@ -7,7 +7,7 @@
         class="relative w-72 md:w-90 md:translate-x-48 sm:translate-x-48 translate-x-12 mx-auto"
       >
         <img
-          src="/assets/img/logo.png"
+          src="~/assets/img/logo.png"
           alt="Crusts & Daisies Logo"
           class="w-full h-auto select-none"
         />
@@ -37,13 +37,14 @@
 
         <!-- order button -->
         <div class="flex md:justify-end">
-          <button
+          <NuxtLink
+            to="/menu"
             class="flex flex-row bg-green hover:bg-[#cdd15e] btn-press rounded-[10px] py-3 px-8 font-semibold text-brown text-[16px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] cursor-pointer"
           >
-            <a href="/menu" class="px-2 text-brown text-heading font-semibold">
+            <span class="px-2 text-brown text-heading font-semibold">
               Pesan Sekarang!
-            </a>
-          </button>
+            </span>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -58,7 +59,7 @@
     <!-- about us -->
     <div
       id="about"
-      class="pt-8 max-w-screen-sm md:max-w-screen-md mx-auto px-6"
+      class="pt-8 scroll-mt-20 max-w-screen-sm md:max-w-screen-md mx-auto px-6"
     >
       <h1 class="text-display font-bold text-brown">About Us</h1>
 
