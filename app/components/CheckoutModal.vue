@@ -13,11 +13,12 @@
       >
         <!-- Close Button -->
         <button
+          type="button"
           @click="handleClose"
-          class="absolute right-5 top-6 text-brown/70 hover:text-brown transition-colors text-xl font-bold cursor-pointer"
+          class="absolute right-5 top-7 text-brown/70 hover:text-brown transition-colors cursor-pointer"
           aria-label="Close"
         >
-          ✕
+          <X class="w-5 h-5 stroke-[2.5]" />
         </button>
 
         <!-- Title -->
@@ -27,7 +28,7 @@
           Ringkasan Pesanan
         </h2>
         <p class="text-[13px] text-brown/80 mt-1">
-          Cek dulu pesananmu sebelum lanjut checkout yaa :D
+          Cek dulu pesananmu sebelum lanjut checkout yaa ^^
         </p>
 
         <!-- Selected Items List -->
@@ -91,13 +92,13 @@
         <div class="mt-6 flex flex-col sm:flex-row gap-2.5">
           <button
             @click="handleClose"
-            class="w-full sm:flex-1 py-3 rounded-[10px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] font-semibold text-brown hover:bg-[#522C15]/5 transition-colors text-[15px] cursor-pointer"
+            class="w-full sm:flex-1 py-3 rounded-[10px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] font-semibold text-brown hover:bg-[#522C15]/5 btn-press transition-all text-[15px] cursor-pointer"
           >
             Ubah Pesanan
           </button>
           <button
             @click="handleCheckout"
-            class="w-full sm:flex-1 bg-green hover:bg-[#cdd15e] active:scale-[0.99] transition-all rounded-[10px] py-3 font-semibold text-brown text-[15px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] cursor-pointer"
+            class="w-full sm:flex-1 bg-green hover:bg-[#cdd15e] btn-press transition-all rounded-[10px] py-3 font-semibold text-brown text-[15px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] cursor-pointer"
           >
             Lanjut ke Checkout
           </button>
@@ -109,6 +110,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { X } from "lucide-vue-next";
 
 const props = defineProps({
   isOpen: {
@@ -188,7 +190,7 @@ const handleCheckout = () => {
   }
 }
 
-/* Rocket launch straight to top on checkout */
+/* Rocket launch straight to top on status */
 .animate-rocket {
   animation: rocket-launch 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }

@@ -1,13 +1,10 @@
 <template>
   <div class="bg-yellow relative min-h-screen pb-24 flex flex-col items-center">
-    <!-- Make the header take full width or adjust header styling if needed, assuming header is fixed it won't be affected by flex col -->
-    <CrustHeader class="w-full" />
-
     <div class="w-full max-w-3xl">
       <!-- Title -->
       <div class="py-8 pb-8 mx-6">
         <h1
-          class="text-[32px] font-bold text-brown leading-none font['Livvic'] tracking-tight"
+          class="text-[32px] font-bold text-brown leading-none tracking-tight"
         >
           Menu
         </h1>
@@ -21,7 +18,6 @@
           :item="item"
           @increase="increaseQuantity(item.id)"
           @decrease="decreaseQuantity(item.id)"
-          @remove="removeItem(item.id)"
         />
       </div>
 
@@ -48,8 +44,10 @@
           @click="openModal"
           :disabled="total === 0"
           :class="[
-            'flex flex-row bg-green hover:bg-[#cdd15e] active:scale-[0.99] transition-all rounded-[10px] py-2 px-12 font-semibold text-brown text-[16px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#271205]',
-            total === 0 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+            'flex flex-row bg-green hover:bg-[#cdd15e] transition-all rounded-[10px] py-2 px-12 font-semibold text-brown text-[16px] border-[2.5px] border-[#381905] shadow-[0px_2px_0px_0px_#381905]',
+            total === 0
+              ? 'opacity-50 cursor-not-allowed'
+              : 'cursor-pointer btn-press',
           ]"
         >
           Pesan!
@@ -69,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 const isModalOpen = ref(false);
 
@@ -111,14 +109,47 @@ const cartItems = ref([
   },
 ]);
 
+const syncCartStorage = () => {
+  if (import.meta.client) {
+    localStorage.setItem("cnd_cart", JSON.stringify(selectedItems.value));
+  }
+};
+
+onMounted(() => {
+  if (import.meta.client) {
+    try {
+      const raw = localStorage.getItem("cnd_cart");
+      if (raw) {
+        const saved = JSON.parse(raw);
+        if (Array.isArray(saved)) {
+          saved.forEach((savedItem) => {
+            const target = cartItems.value.find((i) => i.id === savedItem.id);
+            if (target) {
+              target.quantity = Number(savedItem.quantity) || 0;
+            }
+          });
+        }
+      }
+    } catch (e) {
+      console.error("Failed to restore cnd_cart in menu:", e);
+    }
+  }
+});
+
 const increaseQuantity = (id) => {
   const item = cartItems.value.find((i) => i.id === id);
-  if (item) item.quantity++;
+  if (item) {
+    item.quantity++;
+    syncCartStorage();
+  }
 };
 
 const decreaseQuantity = (id) => {
   const item = cartItems.value.find((i) => i.id === id);
-  if (item && item.quantity > 0) item.quantity--;
+  if (item && item.quantity > 0) {
+    item.quantity--;
+    syncCartStorage();
+  }
 };
 
 const total = computed(() => {
@@ -139,9 +170,7 @@ const openModal = () => {
 };
 
 const proceedToCheckout = () => {
-  if (import.meta.client) {
-    localStorage.setItem("cnd_cart", JSON.stringify(selectedItems.value));
-  }
+  syncCartStorage();
   navigateTo("/checkout");
 };
 </script>
