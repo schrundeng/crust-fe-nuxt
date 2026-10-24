@@ -38,13 +38,11 @@
         <!-- order button -->
         <div class="flex md:justify-end">
           <button
-            class="flex flex-row bg-green hover:bg-[#cdd15e] active:scale-[0.99] transition-all rounded-[10px] py-3 px-8 font-semibold text-brown text-[16px] border-[2px] border-brown shadow-[0px_2px_0px_0px_#522C15] cursor-pointer"
+            class="flex flex-row bg-green hover:bg-[#cdd15e] btn-press rounded-[10px] py-3 px-8 font-semibold text-brown text-[16px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] cursor-pointer"
           >
             <a href="/menu" class="px-2 text-brown text-heading font-semibold">
               Pesan Sekarang!
             </a>
-
-            <!-- <img src="/icons/out.svg" alt="Pesan Sekarang!" /> -->
           </button>
         </div>
       </div>

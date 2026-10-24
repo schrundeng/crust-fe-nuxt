@@ -60,7 +60,7 @@
 <script setup>
 const items = ref([
   { title: "Home", path: "/", icon: "home" },
-  { title: "Order", path: "/order", icon: "order" },
+  { title: "Menu", path: "/menu", icon: "order" },
   { title: "About", path: "/#about", icon: "map" },
   { title: "Contact", path: "/#contact", icon: "phone" },
 ]);

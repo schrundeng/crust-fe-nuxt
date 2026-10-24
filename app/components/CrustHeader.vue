@@ -35,7 +35,7 @@
 
 <script setup>
 const items = ref([
-  { title: "Order", path: "/menu" },
+  { title: "Menu", path: "/menu" },
   { title: "About", path: "/#about" },
   { title: "Contact", path: "/#contact" },
 ]);
