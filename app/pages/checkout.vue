@@ -35,7 +35,7 @@
               type="text"
               placeholder="Isi namamu disini"
               required
-              class="w-full bg-white border-[2.5px] border-brown rounded-[10px] px-5 py-3 text-[14px] text-brown placeholder:text-brown/40 shadow-[0px_2px_0px_0px_#522C15] focus:outline-none focus:ring-2 focus:ring-brown/20 transition-all"
+              class="w-full bg-white border-[2.5px] border-brown rounded-[10px] px-4 py-3 text-[14px] text-brown placeholder:text-brown/40 shadow-[0px_2px_0px_0px_#522C15] focus:outline-none focus:ring-2 focus:ring-brown/20 transition-all"
             />
           </div>
 
@@ -50,7 +50,7 @@
               type="email"
               placeholder="Isi e-mail mu disini"
               required
-              class="w-full bg-white border-[2.5px] border-brown rounded-[10px] px-5 py-3 text-[14px] text-brown placeholder:text-brown/40 shadow-[0px_2px_0px_0px_#522C15] focus:outline-none focus:ring-2 focus:ring-brown/20 transition-all"
+              class="w-full bg-white border-[2.5px] border-brown rounded-[10px] px-4 py-3 text-[14px] text-brown placeholder:text-brown/40 shadow-[0px_2px_0px_0px_#522C15] focus:outline-none focus:ring-2 focus:ring-brown/20 transition-all"
             />
           </div>
 
@@ -66,7 +66,7 @@
               inputmode="numeric"
               placeholder="Isi nomormu disini"
               required
-              class="w-full bg-white border-[2.5px] border-brown rounded-[10px] px-5 py-3 text-[14px] text-brown placeholder:text-brown/40 shadow-[0px_2px_0px_0px_#522C15] focus:outline-none focus:ring-2 focus:ring-brown/20 transition-all"
+              class="w-full bg-white border-[2.5px] border-brown rounded-[10px] px-4 py-3 text-[14px] text-brown placeholder:text-brown/40 shadow-[0px_2px_0px_0px_#522C15] focus:outline-none focus:ring-2 focus:ring-brown/20 transition-all"
               @input="form.phone = form.phone.replace(/[^0-9+]/g, '')"
             />
           </div>
@@ -128,7 +128,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted, nextTick } from "vue";
+import { ref, reactive, computed, onMounted } from "vue";
 import { ArrowLeft } from "lucide-vue-next";
 
 const isConfirmOpen = ref(false);
@@ -180,8 +180,7 @@ const handleFinalSubmit = async () => {
     };
     localStorage.setItem("cnd_order", JSON.stringify(orderData));
   }
-  isConfirmOpen.value = false;
-  await nextTick();
   await navigateTo("/status");
+  isConfirmOpen.value = false;
 };
 </script>

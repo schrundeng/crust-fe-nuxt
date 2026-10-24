@@ -169,8 +169,9 @@ const openModal = () => {
   }
 };
 
-const proceedToCheckout = () => {
+const proceedToCheckout = async () => {
   syncCartStorage();
-  navigateTo("/checkout");
+  await navigateTo("/checkout");
+  isModalOpen.value = false;
 };
 </script>

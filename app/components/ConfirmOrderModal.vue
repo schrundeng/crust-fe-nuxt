@@ -142,7 +142,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { X } from "lucide-vue-next";
 
 const props = defineProps({
@@ -172,6 +172,15 @@ const emit = defineEmits(["close", "confirm"]);
 
 const isLaunching = ref(false);
 
+watch(
+  () => props.isOpen,
+  (open) => {
+    if (open) {
+      isLaunching.value = false;
+    }
+  }
+);
+
 const handleClose = () => {
   if (isLaunching.value) return;
   emit("close");
@@ -181,7 +190,6 @@ const handleConfirm = () => {
   if (isLaunching.value) return;
   isLaunching.value = true;
   setTimeout(() => {
-    isLaunching.value = false;
     emit("confirm");
   }, 430);
 };
