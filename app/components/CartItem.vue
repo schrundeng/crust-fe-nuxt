@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center p-4 bg-[#FFF7E9] border-[2.5px] border-[#522C15] rounded-[10px] shadow-[0px_2px_0px_0px_#522C15] mb-4.5"
+    class="flex items-center p-4 bg-[#FFF7E9] border-[2.5px] border-brown rounded-[10px] shadow-[0px_2px_0px_0px_#522C15] mb-4.5"
   >
     <!-- Image Placeholder -->
     <div
@@ -28,7 +28,7 @@
       <div class="self-end flex items-center gap-2">
         <!-- Counter -->
         <div
-          class="bg-[#f0e8d1] flex items-center justify-between rounded-full h-8 w-22 px-1 border-[2px] border-[#522C15] shadow-[0px_2px_0px_0px_#522C15]"
+          class="bg-[#f0e8d1] flex items-center justify-between rounded-full h-8 w-22 px-1 border-[2px] border-brown shadow-[0px_2px_0px_0px_#522C15]"
         >
           <button
             @click="$emit('decrease')"
