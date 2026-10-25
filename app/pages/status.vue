@@ -15,15 +15,19 @@
 
         <!-- notice -->
         <div class="mx-6 mb-6">
-          <p class="text-[14px] text-brown leading-snug">
+          <p v-if="hasActiveOrder" class="text-[14px] text-brown leading-snug">
             Pesananmu telah tercatat di kasir!! Silakan selesaikan pembayaran
             sesuai rincian nota di bawah,<br class="hidden sm:inline" />
             kemudian upload bukti pembayaran agar pesananmu langsung diproses~
           </p>
+          <p v-else class="text-[14px] text-brown leading-snug">
+            Belum ada pesanan aktif di sesi ini. Kamu bisa memasukkan Kode Pesanan
+            (Order ID) pada formulir di bawah untuk melacak status atau mengunggah bukti pembayaran~
+          </p>
         </div>
 
         <!-- nota component -->
-        <div class="mx-6 flex justify-center">
+        <div v-if="hasActiveOrder" class="mx-6 flex justify-center">
           <Nota :order-meta="orderMeta" :items="orderItems" />
         </div>
 
@@ -31,6 +35,7 @@
         <div class="mx-6 flex flex-col items-center">
           <ClientOnly>
             <FileUpload
+              v-if="hasActiveOrder"
               v-model:preview-url="previewUrl"
               :order-meta="orderMeta"
               @submitted="onProofSubmitted"
@@ -39,6 +44,7 @@
 
           <!-- debug status buttons -->
           <div
+            v-if="showDebug && hasActiveOrder"
             class="w-full max-w-sm md:max-w-[576px] mt-8 pt-4 flex flex-col items-center gap-2"
           >
             <span class="text-[11px] font-semibold text-brown tracking-wider">
@@ -61,7 +67,10 @@
               </button>
             </div>
           </div>
-          <StatusCheck @order-selected="onOrderSelected" />
+          <StatusCheck
+            :wide="!hasActiveOrder"
+            @order-selected="onOrderSelected"
+          />
         </div>
       </div>
     </div>
@@ -86,18 +95,33 @@ const onProofSubmitted = (proof) => {
 };
 
 const formatDate = (isoOrStr) => {
-  if (!isoOrStr) return "22/10/26";
+  if (!isoOrStr) return "";
+  if (typeof isoOrStr === "string" && /^\d{2}\/\d{2}\/\d{2,4}$/.test(isoOrStr)) {
+    return isoOrStr;
+  }
   try {
     const d = new Date(isoOrStr);
-    if (isNaN(d.getTime())) return String(isoOrStr);
+    if (isNaN(d.getTime())) return "";
     const day = String(d.getDate()).padStart(2, "0");
     const month = String(d.getMonth() + 1).padStart(2, "0");
     const year = String(d.getFullYear()).slice(-2);
     return `${day}/${month}/${year}`;
   } catch {
-    return "22/10/26";
+    return "";
   }
 };
+
+const showDebug = computed(() => {
+  return (
+    import.meta.dev ||
+    route.query.debug !== undefined ||
+    route.query.admin !== undefined
+  );
+});
+
+const hasActiveOrder = computed(() => {
+  return Boolean(orderMeta.value?.orderId);
+});
 
 const getStoredOrderMeta = () => {
   if (import.meta.client) {
@@ -108,15 +132,17 @@ const getStoredOrderMeta = () => {
     if (rawOrder) {
       try {
         const parsed = JSON.parse(rawOrder);
-        const activeId = queryId || parsed.orderId || parsed.id || "CND-849201";
+        const activeId = queryId || parsed.orderId || parsed.id || "";
         return {
           orderId: activeId,
           date: formatDate(
             parsed.orderDate || parsed.created_at || new Date().toISOString(),
           ),
-          customer: parsed.customer || {
-            username: parsed.client?.nama_client || "Naufaru",
-          },
+          customer:
+            parsed.customer ||
+            (parsed.client?.nama_client
+              ? { username: parsed.client.nama_client }
+              : null),
           status: parsed.status || "belum_lunas",
         };
       } catch (e) {
@@ -127,15 +153,15 @@ const getStoredOrderMeta = () => {
       return {
         orderId: queryId,
         date: formatDate(new Date().toISOString()),
-        customer: { username: "Pelanggan" },
+        customer: null,
         status: "belum_lunas",
       };
     }
   }
   return {
-    orderId: "CND-849201",
-    date: "22/10/26",
-    customer: { username: "Naufaru" },
+    orderId: "",
+    date: "",
+    customer: null,
     status: "belum_lunas",
   };
 };
@@ -161,7 +187,7 @@ const setStatus = (newStatus) => {
     if (orderMeta.value.customer) {
       orderObj.customer = orderMeta.value.customer;
     }
-    if (orderMeta.value.date) {
+    if (!orderObj.orderDate && orderMeta.value.date) {
       orderObj.orderDate = orderMeta.value.date;
     }
     if (rawOrderItems.value && rawOrderItems.value.length > 0) {
@@ -181,26 +207,38 @@ const onOrderSelected = (order) => {
 const loadFromStorage = () => {
   if (!import.meta.client) return;
 
-  let loadedItems = [];
   const queryId = route.query.id
     ? String(route.query.id).trim().toUpperCase()
     : null;
-
-  // 1. Check cnd_order for metadata and items
   const rawOrder = localStorage.getItem("cnd_order");
+
+  if (!rawOrder && !queryId) {
+    orderMeta.value = {
+      orderId: "",
+      date: "",
+      customer: null,
+      status: "belum_lunas",
+    };
+    rawOrderItems.value = [];
+    return;
+  }
+
+  let loadedItems = [];
   if (rawOrder) {
     try {
       const parsed = JSON.parse(rawOrder);
-      const activeId = queryId || parsed.orderId || parsed.id || "CND-849201";
+      const activeId = queryId || parsed.orderId || parsed.id || "";
 
       orderMeta.value = {
         orderId: activeId,
         date: formatDate(
           parsed.orderDate || parsed.created_at || new Date().toISOString(),
         ),
-        customer: parsed.customer || {
-          username: parsed.client?.nama_client || "Naufaru",
-        },
+        customer:
+          parsed.customer ||
+          (parsed.client?.nama_client
+            ? { username: parsed.client.nama_client }
+            : null),
         status: parsed.status || "belum_lunas",
       };
 
@@ -223,7 +261,7 @@ const loadFromStorage = () => {
     orderMeta.value = {
       orderId: queryId,
       date: formatDate(new Date().toISOString()),
-      customer: { username: "Pelanggan" },
+      customer: null,
       status: "belum_lunas",
     };
     loadedItems = [];

@@ -62,6 +62,7 @@
 const items = ref([
   { title: "Home", path: "/", icon: "home" },
   { title: "Menu", path: "/menu", icon: "order" },
+  { title: "Status", path: "/status", icon: "status" },
   { title: "About", path: "/#about", icon: "map" },
   { title: "Contact", path: "/#contact", icon: "phone" },
 ]);

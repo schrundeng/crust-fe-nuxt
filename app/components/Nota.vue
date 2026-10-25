@@ -35,7 +35,7 @@
             >{{
               orderMeta?.customer?.name ||
               orderMeta?.customer?.username ||
-              "Naufaru"
+              ""
             }}</span
           >
         </div>
@@ -47,7 +47,7 @@
           >
           <span
             class="font-handwriting pb-0.5 md:pb-1 text-[12px] md:text-[18px] leading-none"
-            >{{ orderMeta?.date || "22/10/26" }}</span
+            >{{ orderMeta?.date || "" }}</span
           >
         </div>
       </div>
@@ -138,7 +138,8 @@
               >
                 <div class="flex items-baseline gap-1 md:gap-1.5">
                   <span>ID Pesanan:</span>
-                  <span class="select-all"><span>CND-</span><span class="font-handwriting text-blue text-[13px] md:text-[19.5px] leading-none">{{ orderMeta?.orderId?.replace(/^CND-?/, "") || "849201" }}</span></span>
+                  <span v-if="orderMeta?.orderId" class="select-all"><span>CND-</span><span class="font-handwriting text-blue text-[13px] md:text-[19.5px] leading-none">{{ orderMeta.orderId.replace(/^CND-?/, "") }}</span></span>
+                  <span v-else class="text-black/30">-</span>
                 </div>
                 <span>Jumlah Rp.</span>
               </div>
@@ -146,7 +147,7 @@
             <td
               class="border-b border-r border-black text-right px-1 md:px-1.5 font-handwriting text-blue text-[13px] md:text-[19.5px] p-0"
             >
-              {{ total.toLocaleString("id-ID") }}
+              {{ total > 0 ? total.toLocaleString("id-ID") : "" }}
             </td>
           </tr>
         </tfoot>
@@ -225,9 +226,9 @@ const props = defineProps({
   orderMeta: {
     type: Object,
     default: () => ({
-      orderId: "CND-849201",
-      date: "22/10/26",
-      customer: { username: "Naufaru" },
+      orderId: "",
+      date: "",
+      customer: null,
       status: "belum_lunas",
     }),
   },
@@ -256,6 +257,7 @@ const currentSquiggleSvg = computed(() => {
 });
 
 const activeStatusStampSvg = computed(() => {
+  if (!props.orderMeta?.orderId) return null;
   const status = props.orderMeta?.status;
   if (!status) return null;
   const valid = ["belum_lunas", "lunas", "diproses", "batal"];

@@ -1,6 +1,7 @@
 <template>
   <div
-    class="w-full max-w-sm md:max-w-[576px] mt-6 bg-white rounded-[12px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] p-5 md:p-6 text-brown flex flex-col"
+    class="w-full mt-6 bg-white rounded-[12px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] p-5 md:p-6 text-brown flex flex-col transition-all duration-300"
+    :class="wide ? 'max-w-none' : 'max-w-sm md:max-w-[576px]'"
   >
     <!-- Header -->
     <div class="flex items-start justify-between gap-3 mb-4">
@@ -76,7 +77,8 @@
                   {{
                     searchResult.order.customer?.name ||
                     searchResult.order.customer?.username ||
-                    "Pelanggan"
+                    searchResult.order.client?.nama_client ||
+                    "-"
                   }}
                 </p>
                 <p class="text-[14px] text-brown">
@@ -121,6 +123,13 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { AlertCircle } from "lucide-vue-next";
+
+const props = defineProps({
+  wide: {
+    type: Boolean,
+    default: false,
+  },
+});
 
 const emit = defineEmits(["order-selected"]);
 const route = useRoute();

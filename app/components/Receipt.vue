@@ -40,10 +40,13 @@
       <div class="font-receipt text-[20px] space-y-1 py-1">
         <div class="flex justify-between">
           <span>NO: {{ orderMeta.orderId }}</span>
-          <span>{{ orderMeta.date }}</span>
+          <span>{{ formattedDate }}</span>
         </div>
-        <div class="flex justify-between" v-if="orderMeta.customer?.username">
-          <span>PLG: {{ orderMeta.customer.username }}</span>
+        <div
+          class="flex justify-between"
+          v-if="orderMeta.customer?.username || orderMeta.customer?.name"
+        >
+          <span>PLG: {{ orderMeta.customer.username || orderMeta.customer.name }}</span>
           <span>ORDER: {{ orderMeta.orderType || "PRE-ORDER" }}</span>
         </div>
         <div class="flex justify-between">
@@ -151,9 +154,9 @@ const props = defineProps({
   orderMeta: {
     type: Object,
     default: () => ({
-      orderId: "CND-849201",
-      date: "21/10/26",
-      customer: { username: "Naufaru" },
+      orderId: "",
+      date: "",
+      customer: null,
       orderType: "PRE-ORDER",
       cashier: "ADMIN 01",
       paymentMethod: "QRIS",
@@ -178,6 +181,24 @@ const orderTotal = computed(() => {
       sum + (Number(item.price) || 0) * (Number(item.quantity) || 1),
     0,
   );
+});
+
+const formattedDate = computed(() => {
+  const dStr = props.orderMeta?.date || props.orderMeta?.orderDate;
+  if (!dStr) return "";
+  if (typeof dStr === "string" && /^\d{2}\/\d{2}\/\d{2,4}$/.test(dStr)) {
+    return dStr;
+  }
+  try {
+    const d = new Date(dStr);
+    if (isNaN(d.getTime())) return "";
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = String(d.getFullYear()).slice(-2);
+    return `${day}/${month}/${year}`;
+  } catch {
+    return "";
+  }
 });
 
 const updateDashes = () => {

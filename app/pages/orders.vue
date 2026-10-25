@@ -66,15 +66,12 @@ const route = useRoute();
 const receiptRef = ref(null);
 const isDownloading = ref(false);
 
-const orderItems = ref([
-  { id: 1, name: "Apple Pie", price: 7000, quantity: 2 },
-  { id: 2, name: "Caramel Pudding", price: 7000, quantity: 1 },
-]);
+const orderItems = ref([]);
 
 const orderMeta = ref({
-  orderId: "CND-849201",
-  date: "21/10/26",
-  customer: { username: "Naufaru" },
+  orderId: "",
+  date: "",
+  customer: null,
   orderType: "PRE-ORDER",
   cashier: "ADMIN 01",
   paymentMethod: "QRIS",
@@ -92,59 +89,90 @@ const handleDownload = async () => {
   }
 };
 
-onMounted(() => {
-  if (import.meta.client) {
-    const rawOrder = localStorage.getItem("cnd_order");
-    if (rawOrder) {
-      try {
-        const parsed = JSON.parse(rawOrder);
-        const queryId = route.query.id
-          ? String(route.query.id).trim().toUpperCase()
-          : null;
-        if (parsed.items && parsed.items.length > 0) {
-          orderItems.value = parsed.items;
-        } else {
-          const rawCart = localStorage.getItem("cnd_cart");
-          if (rawCart) {
-            try {
-              const parsedCart = JSON.parse(rawCart);
-              if (Array.isArray(parsedCart) && parsedCart.length > 0) {
-                orderItems.value = parsedCart;
-              }
-            } catch {}
-          }
-        }
-        orderMeta.value = {
-          orderId: queryId || parsed.orderId || parsed.id || "CND-849201",
-          date:
-            parsed.orderDate || parsed.created_at
-              ? new Date(
-                  parsed.orderDate || parsed.created_at,
-                ).toLocaleDateString("id-ID", {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "2-digit",
-                })
-              : "21/10/26",
-          customer: parsed.customer || {
-            username: parsed.client?.nama_client || "Naufaru",
-          },
-          orderType: parsed.orderType || parsed.order_type || "PRE-ORDER",
-          cashier:
-            parsed.cashier ||
-            parsed.admin?.username ||
-            parsed.kasir ||
-            "ADMIN 01",
-          paymentMethod:
-            parsed.paymentMethod ||
-            parsed.metode_pembayaran ||
-            parsed.bayar ||
-            "QRIS",
-        };
-      } catch (e) {
-        console.error("Failed to parse cnd_order", e);
-      }
-    }
+const formatDate = (isoOrStr) => {
+  if (!isoOrStr) return "";
+  if (typeof isoOrStr === "string" && /^\d{2}\/\d{2}\/\d{2,4}$/.test(isoOrStr)) {
+    return isoOrStr;
   }
+  try {
+    const d = new Date(isoOrStr);
+    if (isNaN(d.getTime())) return "";
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = String(d.getFullYear()).slice(-2);
+    return `${day}/${month}/${year}`;
+  } catch {
+    return "";
+  }
+};
+
+const loadOrder = () => {
+  if (!import.meta.client) return;
+
+  const queryId = route.query.id
+    ? String(route.query.id).trim().toUpperCase()
+    : null;
+  const rawOrder = localStorage.getItem("cnd_order");
+
+  if (!rawOrder && !queryId) {
+    navigateTo("/menu");
+    return;
+  }
+
+  if (rawOrder) {
+    try {
+      const parsed = JSON.parse(rawOrder);
+      if (parsed.items && parsed.items.length > 0) {
+        orderItems.value = parsed.items;
+      } else {
+        const rawCart = localStorage.getItem("cnd_cart");
+        if (rawCart) {
+          try {
+            const parsedCart = JSON.parse(rawCart);
+            if (Array.isArray(parsedCart) && parsedCart.length > 0) {
+              orderItems.value = parsedCart;
+            }
+          } catch {}
+        }
+      }
+      orderMeta.value = {
+        orderId: queryId || parsed.orderId || parsed.id || "",
+        date:
+          formatDate(parsed.orderDate || parsed.created_at || parsed.date) ||
+          formatDate(new Date().toISOString()),
+        customer:
+          parsed.customer ||
+          (parsed.client?.nama_client
+            ? { username: parsed.client.nama_client }
+            : null),
+        orderType: parsed.orderType || parsed.order_type || "PRE-ORDER",
+        cashier:
+          parsed.cashier ||
+          parsed.admin?.username ||
+          parsed.kasir ||
+          "ADMIN 01",
+        paymentMethod:
+          parsed.paymentMethod ||
+          parsed.metode_pembayaran ||
+          parsed.bayar ||
+          "QRIS",
+      };
+    } catch (e) {
+      console.error("Failed to parse cnd_order", e);
+    }
+  } else if (queryId) {
+    orderMeta.value = {
+      orderId: queryId,
+      date: formatDate(new Date().toISOString()),
+      customer: null,
+      orderType: "PRE-ORDER",
+      cashier: "ADMIN 01",
+      paymentMethod: "QRIS",
+    };
+  }
+};
+
+onMounted(() => {
+  loadOrder();
 });
 </script>

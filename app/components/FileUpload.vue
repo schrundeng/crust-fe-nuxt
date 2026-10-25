@@ -339,7 +339,7 @@ const props = defineProps({
     type: Object,
     default: () => ({
       status: "belum_lunas",
-      orderId: "CND-849201",
+      orderId: "",
     }),
   },
 });
@@ -347,7 +347,7 @@ const props = defineProps({
 const emit = defineEmits(["update:previewUrl", "submitted"]);
 
 const status = computed(() => props.orderMeta?.status || "belum_lunas");
-const orderId = computed(() => props.orderMeta?.orderId || "CND-849201");
+const orderId = computed(() => props.orderMeta?.orderId || "");
 
 const isReady = ref(false);
 
