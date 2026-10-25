@@ -20,7 +20,9 @@
       </div>
 
       <!-- nama tanggal -->
-      <div class="flex flex-col gap-2.5 md:gap-[15px] w-32 md:w-48 pt-1 md:pt-1.5">
+      <div
+        class="flex flex-col gap-2.5 md:gap-[15px] w-32 md:w-48 pt-1 md:pt-1.5"
+      >
         <div class="h-4 md:h-6"></div>
         <div
           class="flex items-end justify-between border-b border-black pr-1 md:pr-1.5 pb-0.5 md:pb-1"
@@ -90,9 +92,7 @@
             :key="item.id || index"
             class="h-6 md:h-9 text-[13px] md:text-[19.5px] text-blue font-handwriting"
           >
-            <td
-              class="border-b border-l border-r border-black text-center p-0"
-            >
+            <td class="border-b border-l border-r border-black text-center p-0">
               {{ item.quantity }}
             </td>
             <td
@@ -122,28 +122,17 @@
             :key="'empty-' + n"
             class="h-6 md:h-9"
           >
-            <td
-              class="border-b border-l border-r border-black p-0"
-            ></td>
-            <td
-              class="border-b border-r border-black p-0"
-            ></td>
-            <td
-              class="border-b border-r border-black p-0"
-            ></td>
-            <td
-              class="border-b border-r border-black p-0"
-            ></td>
+            <td class="border-b border-l border-r border-black p-0"></td>
+            <td class="border-b border-r border-black p-0"></td>
+            <td class="border-b border-r border-black p-0"></td>
+            <td class="border-b border-r border-black p-0"></td>
           </tr>
         </tbody>
 
         <!-- table footer (jumlah row) -->
         <tfoot>
           <tr class="h-6 md:h-9">
-            <td
-              colspan="3"
-              class="border-r border-black p-0"
-            >
+            <td colspan="3" class="border-r border-black p-0">
               <div
                 class="flex items-center justify-between h-full px-1.5 md:px-2.5 text-[11px] md:text-[16.5px] font-normal text-black"
               >
@@ -178,8 +167,7 @@
           alt=""
           class="w-auto h-auto md:scale-150 md:origin-bottom object-contain opacity-90 transition-transform"
           :class="{
-            'translate-y-[4px] md:translate-y-[6px]':
-              items.length === 1,
+            'translate-y-[4px] md:translate-y-[6px]': items.length === 1,
           }"
         />
       </div>
@@ -224,9 +212,7 @@
           alt="Tanda Tangan"
           class="w-24 md:w-36 h-auto -my-1 md:-my-1.5 pointer-events-none"
         />
-        <div
-          class="w-28 md:w-[168px] border-b border-black"
-        ></div>
+        <div class="w-28 md:w-[168px] border-b border-black"></div>
       </div>
     </div>
   </div>
@@ -258,7 +244,8 @@ const props = defineProps({
 
 const total = computed(() => {
   return props.items.reduce(
-    (sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 1),
+    (sum, item) =>
+      sum + (Number(item.price) || 0) * (Number(item.quantity) || 1),
     0,
   );
 });

@@ -51,8 +51,10 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { Download } from "lucide-vue-next";
 
+const route = useRoute();
 const receiptRef = ref(null);
 const isDownloading = ref(false);
 
@@ -88,6 +90,9 @@ onMounted(() => {
     if (rawOrder) {
       try {
         const parsed = JSON.parse(rawOrder);
+        const queryId = route.query.id
+          ? String(route.query.id).trim().toUpperCase()
+          : null;
         if (parsed.items && parsed.items.length > 0) {
           orderItems.value = parsed.items;
         } else {
@@ -102,7 +107,7 @@ onMounted(() => {
           }
         }
         orderMeta.value = {
-          orderId: parsed.orderId || parsed.id || "CND-849201",
+          orderId: queryId || parsed.orderId || parsed.id || "CND-849201",
           date:
             parsed.orderDate || parsed.created_at
               ? new Date(

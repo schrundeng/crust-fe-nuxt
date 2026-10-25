@@ -170,6 +170,7 @@ const handleSubmit = () => {
 };
 
 const handleFinalSubmit = async () => {
+  let createdOrderId = null;
   if (import.meta.client) {
     const orderData = {
       customer: { ...form },
@@ -178,9 +179,17 @@ const handleFinalSubmit = async () => {
       orderId: "CND-" + Math.floor(100000 + Math.random() * 900000),
       status: "belum_lunas",
     };
+    createdOrderId = orderData.orderId;
     localStorage.setItem("cnd_order", JSON.stringify(orderData));
   }
-  await navigateTo("/status");
+  if (createdOrderId) {
+    await navigateTo({
+      path: "/status",
+      query: { id: createdOrderId },
+    });
+  } else {
+    await navigateTo("/status");
+  }
   isConfirmOpen.value = false;
 };
 </script>
