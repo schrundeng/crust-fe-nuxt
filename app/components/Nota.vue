@@ -31,7 +31,7 @@
             >Kepada Yth.</span
           >
           <span
-            class="font-handwriting pb-0.5 md:pb-1 text-[12px] md:text-[18px] leading-none"
+            class="font-handwriting pb-0.5 md:pb-1 text-[12px] md:text-[18px] truncate leading-none"
             >{{
               orderMeta?.customer?.name ||
               orderMeta?.customer?.username ||
@@ -138,12 +138,7 @@
               >
                 <div class="flex items-baseline gap-1 md:gap-1.5">
                   <span>ID Pesanan:</span>
-                  <span>CND-</span>
-                  <span
-                    class="font-handwriting text-blue text-[13px] md:text-[19.5px] -ml-0.5 md:-ml-1 leading-none"
-                  >
-                    {{ orderMeta?.orderId?.replace(/^CND-?/, "") || "849201" }}
-                  </span>
+                  <span class="select-all"><span>CND-</span><span class="font-handwriting text-blue text-[13px] md:text-[19.5px] leading-none">{{ orderMeta?.orderId?.replace(/^CND-?/, "") || "849201" }}</span></span>
                 </div>
                 <span>Jumlah Rp.</span>
               </div>

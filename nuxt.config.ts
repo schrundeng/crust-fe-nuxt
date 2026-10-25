@@ -19,5 +19,9 @@ export default defineNuxtConfig({
     port: 3000,
     host: '0.0.0.0',
   },
-  
+
+  routeRules: {
+    '/status': { ssr: false },
+    '/orders': { ssr: false },
+  },
 });

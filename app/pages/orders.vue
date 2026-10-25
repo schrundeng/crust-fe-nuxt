@@ -1,7 +1,9 @@
 <template>
   <div class="bg-yellow min-h-screen">
-    <div class="bg-yellow relative min-h-screen pb-24 flex flex-col items-center">
-      <div class="w-full max-w-3xl md:px-0 px-4">
+    <div
+      class="bg-yellow relative min-h-screen pb-24 flex flex-col items-center"
+    >
+      <div class="w-full max-w-3xl">
         <div class="py-8 pb-4 mx-6">
           <h1
             class="text-[32px] font-bold text-brown leading-none font-['Livvic'] tracking-tight"
@@ -18,30 +20,36 @@
         </div>
 
         <!-- Receipt Component -->
-        <Receipt ref="receiptRef" :order-meta="orderMeta" :items="orderItems" />
+        <div class="mx-6 flex justify-center">
+          <Receipt ref="receiptRef" :order-meta="orderMeta" :items="orderItems" />
+        </div>
 
         <!-- Action Buttons -->
-        <div class="max-w-md w-full mx-auto mt-6 flex flex-col md:flex-row gap-3">
-          <NuxtLink
-            to="/"
-            class="flex-1 w-full bg-green hover:bg-[#cdd15e] btn-press transition-all rounded-[10px] py-3 text-center font-semibold text-brown text-[16px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] cursor-pointer flex items-center justify-center"
+        <div class="mx-6 flex justify-center mt-6">
+          <div
+            class="max-w-md w-full flex flex-col md:flex-row gap-3"
           >
-            Kembali ke Homepage
-          </NuxtLink>
+            <NuxtLink
+              to="/"
+              class="flex-1 w-full bg-green hover:bg-[#cdd15e] btn-press transition-all rounded-[10px] py-3 text-center font-semibold text-brown text-[16px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] cursor-pointer flex items-center justify-center"
+            >
+              Kembali ke Homepage
+            </NuxtLink>
 
-          <button
-            @click="handleDownload"
-            :disabled="isDownloading"
-            class="flex-1 w-full bg-white hover:bg-[#f3eedf] btn-press transition-all rounded-[10px] py-3 text-center font-semibold text-brown text-[16px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-60"
-          >
-            <Download
-              class="w-5 h-5 stroke-[2.5px] shrink-0"
-              v-if="!isDownloading"
-            />
-            <span>{{
-              isDownloading ? "Menyimpan Struk..." : "Download Struk"
-            }}</span>
-          </button>
+            <button
+              @click="handleDownload"
+              :disabled="isDownloading"
+              class="flex-1 w-full bg-white hover:bg-[#f3eedf] btn-press transition-all rounded-[10px] py-3 text-center font-semibold text-brown text-[16px] border-[2.5px] border-brown shadow-[0px_2px_0px_0px_#522C15] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-60"
+            >
+              <Download
+                class="w-5 h-5 stroke-[2.5px] shrink-0"
+                v-if="!isDownloading"
+              />
+              <span>{{
+                isDownloading ? "Menyimpan Struk..." : "Download Struk"
+              }}</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
