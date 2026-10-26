@@ -15,9 +15,9 @@ const isSidebarOpen = ref(false);
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk && titleChunk !== 'Crusts & Daisies'
-      ? `${titleChunk} · Crusts & Daisies`
-      : 'Crusts & Daisies';
+    return titleChunk && titleChunk !== "Crusts & Daisies"
+      ? `${titleChunk} - Crusts & Daisies`
+      : "Crusts & Daisies";
   },
 });
 </script>
