@@ -171,27 +171,27 @@ const menuItems = [
   {
     name: "Apple Pie",
     price: "Rp 7.000",
-    img: "/img/illust/apple_pie.png",
+    img: "/img/illust/apple_pie.webp",
   },
   {
     name: "Caramel Pudding",
     price: "Rp 7.000",
-    img: "/img/illust/caramel_pudding.png",
+    img: "/img/illust/caramel_pudding.webp",
   },
   {
     name: "Eclair Pastry",
     price: "Rp 8.000",
-    img: "/img/illust/eclair_pastry.png",
+    img: "/img/illust/eclair_pastry.webp",
   },
   {
     name: "Choquettes",
     price: "Rp 6.000",
-    img: "/img/illust/choquettes.png",
+    img: "/img/illust/choquettes.webp",
   },
   {
     name: "Teh Tarik",
     price: "Rp 5.000",
-    img: "/img/illust/teh_tarik.png",
+    img: "/img/illust/teh_tarik.webp",
   },
 ];
 

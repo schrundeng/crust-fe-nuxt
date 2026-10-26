@@ -80,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted, onUnmounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
@@ -317,6 +317,38 @@ if (import.meta.client) {
 
 onMounted(() => {
   loadFromStorage();
+});
+
+let autoLunasTimer = null;
+
+const checkAutoLunas = (status) => {
+  if (!import.meta.client) return;
+  if (autoLunasTimer) {
+    clearTimeout(autoLunasTimer);
+    autoLunasTimer = null;
+  }
+  if (status === "diproses") {
+    autoLunasTimer = setTimeout(() => {
+      if (orderMeta.value?.status === "diproses") {
+        setStatus("lunas");
+      }
+    }, 3000);
+  }
+};
+
+watch(
+  () => orderMeta.value?.status,
+  (newStatus) => {
+    checkAutoLunas(newStatus);
+  },
+  { immediate: true },
+);
+
+onUnmounted(() => {
+  if (autoLunasTimer) {
+    clearTimeout(autoLunasTimer);
+    autoLunasTimer = null;
+  }
 });
 
 const orderItems = computed(() => {
