@@ -18,7 +18,7 @@
       <!-- scroll track -->
       <div
         ref="carouselRef"
-        class="flex overflow-x-auto snap-x snap-mandatory gap-6 py-4 px-4 scrollbar-none w-full items-center"
+        class="flex overflow-x-auto snap-x snap-mandatory gap-16 py-4 px-4 scrollbar-none w-full items-center"
         @scrollend="handleScrollEnd"
         @scroll="onScroll"
         @mouseenter="pauseAutoScroll"
