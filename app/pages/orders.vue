@@ -63,6 +63,10 @@ import { useRoute } from "vue-router";
 import { Download } from "lucide-vue-next";
 
 const route = useRoute();
+
+useHead({
+  title: "Detail Pesanan",
+});
 const receiptRef = ref(null);
 const isDownloading = ref(false);
 

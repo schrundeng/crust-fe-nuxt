@@ -132,6 +132,10 @@ import { ref, reactive, computed, onMounted } from "vue";
 import { ArrowLeft } from "lucide-vue-next";
 
 const isConfirmOpen = ref(false);
+
+useHead({
+  title: "Checkout",
+});
 const cartItems = ref([]);
 
 const form = reactive({

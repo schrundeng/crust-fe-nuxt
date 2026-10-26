@@ -71,6 +71,10 @@ import { ref, computed, onMounted } from "vue";
 
 const isModalOpen = ref(false);
 
+useHead({
+  title: "Menu",
+});
+
 const cartItems = ref([
   {
     id: 1,

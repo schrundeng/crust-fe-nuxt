@@ -85,6 +85,10 @@ import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
 
+useHead({
+  title: "Status Pesanan",
+});
+
 const rawOrderItems = ref([]);
 
 const previewUrl = ref(null);

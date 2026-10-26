@@ -77,4 +77,13 @@ const is404 = computed(() => statusCode.value === 404);
 const handleClearError = () => {
   clearError({ redirect: "/" });
 };
+
+useHead({
+  title: computed(() =>
+    is404.value
+      ? "404 - Halaman Tidak Ditemukan - Crusts & Daisies"
+      : "500 - Kendala Dapur - Crusts & Daisies",
+  ),
+  link: [{ rel: "icon", type: "image/png", href: "/logo.png" }],
+});
 </script>

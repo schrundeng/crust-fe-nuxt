@@ -6,6 +6,17 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
+    head: {
+      title: 'Crusts & Daisies',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'Perpaduan antara kue kering yang renyah dan menyenangkan dengan suasana hangat.' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/logo.png' },
+      ],
+    },
   },
   css: ['~/assets/css/main.css'],
     vite: {
